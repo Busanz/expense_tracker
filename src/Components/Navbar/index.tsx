@@ -7,7 +7,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" elevation={0} sx={{ px: { xs: 0, sm: 28 } }}>
+      <AppBar position="static" elevation={0}>
         <Toolbar>
           <CurrencyExchangeIcon
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
