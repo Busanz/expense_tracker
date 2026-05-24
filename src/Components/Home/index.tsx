@@ -1,31 +1,27 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import ExpenceCard from '../ExpenceCard';
+import TotalExpenceCard from '../TotalExpenceCard';
 import TabWapper from '../TabWapper';
 import Navbar from '../Navbar';
 import DisplayTransactions from '../DisplayTransactions';
 import { useEffect, useRef, useState } from 'react';
 import type { TransactionType } from '../../utilis/types';
 import { getAllTransaction } from '../../utilis/functions';
+import TotalPaidDashboard from '../TotalPaidDashboard';
 
 const Home = () => {
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const isLoadingRef = useRef(false);
 
-  const loadTransactions = () => {
+  const handleTransactionAdded = () => {
     if (isLoadingRef.current) return;
-
     isLoadingRef.current = true;
     setTransactions(getAllTransaction());
     isLoadingRef.current = false;
   };
 
-  const handleTransactionAdded = () => {
-    setTransactions(getAllTransaction());
-  };
-
   useEffect(() => {
-    loadTransactions();
+    handleTransactionAdded();
   }, []);
 
   return (
@@ -47,8 +43,8 @@ const Home = () => {
             gap: 2,
           }}
         >
-          <ExpenceCard />
-          <ExpenceCard />
+          <TotalExpenceCard totalExpenceCardTransactions={transactions} />
+          <TotalPaidDashboard totalPaidDashboardTransactions={transactions} />
         </Box>
         <Box
           sx={{

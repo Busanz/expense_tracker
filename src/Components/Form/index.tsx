@@ -25,8 +25,10 @@ const income: string[] = [
 ];
 
 const Form = ({ typeOfForm, onNewTransactionForm }: FormProps) => {
+  const defaultTransactionType: string =
+    typeOfForm === 'paid' ? paid[0] : income[0];
   const [valueAutocomplete, setValueAutocomplete] = useState<string | null>(
-    typeOfForm === 'paid' ? paid[0] : income[0],
+    defaultTransactionType,
   );
   const [inputValue, setInputValue] = useState<string>('');
   const [inputDes, setInputDes] = useState<string | null>(null);
@@ -45,14 +47,22 @@ const Form = ({ typeOfForm, onNewTransactionForm }: FormProps) => {
       amount: inputAmount!,
       category: inputValue,
       typeOfTransaction: typeOfForm,
-      createdDate: dateTimeNow.toLocaleDateString(),
-      createdTime: dateTimeNow.toLocaleTimeString(),
+      createdDate: new Intl.DateTimeFormat('sv-SE').format(dateTimeNow),
+      createdTime: new Intl.DateTimeFormat('sv-SE', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      }).format(dateTimeNow),
     };
 
     allTransactions.unshift(newTransaction);
 
     localStorage.setItem('transaction', JSON.stringify(allTransactions));
     setIsSuccessed(true);
+    setTimeout(() => {
+      setIsSuccessed(false);
+    }, 2000);
+
     onNewTransactionForm();
   };
 
@@ -80,7 +90,10 @@ const Form = ({ typeOfForm, onNewTransactionForm }: FormProps) => {
         type="number"
         required
         size="small"
-        onChange={(e) => setInputAmount(Number(e.target.value))}
+        onChange={(e) => {
+          const inputAmount = Number(e.target.value);
+          setInputAmount(typeOfForm === 'paid' ? -inputAmount : inputAmount);
+        }}
       />
       <Box
         sx={{
@@ -141,8 +154,12 @@ const Form = ({ typeOfForm, onNewTransactionForm }: FormProps) => {
         </Button>
       </Box>
       {isSuccessed && (
-        <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-          Here is a gentle confirmation that your action was successful.
+        <Alert
+          icon={<CheckIcon fontSize="inherit" />}
+          severity="success"
+          sx={{ position: 'absolute' }}
+        >
+          Transaction was added successfuly.
         </Alert>
       )}
     </Box>
@@ -150,3 +167,7 @@ const Form = ({ typeOfForm, onNewTransactionForm }: FormProps) => {
 };
 
 export default Form;
+
+// To validate form
+// Need to validate input range for amount
+// Need to clear entered value once press Add button

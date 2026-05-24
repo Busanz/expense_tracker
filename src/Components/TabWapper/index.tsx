@@ -33,7 +33,7 @@ function CustomTabPanel(props: TabPanelProps) {
 const TabWapper = ({ onNewTransactionTab }: TabWapperProps) => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
@@ -52,8 +52,8 @@ const TabWapper = ({ onNewTransactionTab }: TabWapperProps) => {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="ADD QUICK EXPENCE" />
-          <Tab label="ADD QUICK IINCOME" />
+          <Tab label="ADD EXPENCE" />
+          <Tab label="ADD INCOME" />
         </Tabs>
       </Box>
       {(['paid', 'income'] as Array<'paid' | 'income'>).map((form, index) => (

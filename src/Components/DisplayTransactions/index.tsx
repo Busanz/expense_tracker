@@ -56,7 +56,6 @@ const DisplayTransactions = ({ transactions }: DisplayTransactionProps) => {
                 sx={{
                   justifyContent: 'space-evenly',
                   alignItems: 'center',
-                  // flexGrow: 1,
                 }}
               >
                 <Typography
@@ -68,7 +67,7 @@ const DisplayTransactions = ({ transactions }: DisplayTransactionProps) => {
                         : '#dc0037',
                   }}
                 >
-                  {item.typeOfTransaction === 'income' ? '+' : '-'}
+                  {item.typeOfTransaction === 'income' ? '+' : ''}
                   {item.amount} SEK
                 </Typography>
                 <Chip
