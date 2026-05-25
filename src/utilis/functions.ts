@@ -7,3 +7,5 @@ export const getAllTransaction = (): TransactionType[] => {
 
   return allTransactions;
 };
+
+export const valueFormatter = (item: { value: number }) => `${item.value}%`;

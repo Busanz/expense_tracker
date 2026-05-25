@@ -13,7 +13,7 @@ type TotalPaidDashboardProps = {
 const TotalPaidDashboard = ({
   totalPaidDashboardTransactions,
 }: TotalPaidDashboardProps) => {
-  const MONTHY_LIMITE: number = 5000;
+  const MONTHY_LIMITE: number = 8000;
   const paidTransactions = totalPaidDashboardTransactions.filter(
     (trans) => trans.amount < 0,
   );
@@ -57,7 +57,8 @@ const TotalPaidDashboard = ({
           {options.format(Math.abs(totalPaid))}
 
           <Typography component="span" sx={{ color: '#9e9e9e' }}>
-            {' /'} 5000 SEK
+            {' /'}
+            {MONTHY_LIMITE} SEK
           </Typography>
         </Typography>
       </CardContent>

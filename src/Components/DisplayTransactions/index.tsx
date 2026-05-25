@@ -76,7 +76,7 @@ const DisplayTransactions = ({ transactions }: DisplayTransactionProps) => {
                     px: 4,
                     py: 2,
                     display: 'box',
-                    minWidth: 150,
+                    minWidth: 160,
                     backgroundColor: '#fff',
                   }}
                   size="small"

@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { TransactionType } from '../../utilis/types';
 import { getAllTransaction } from '../../utilis/functions';
 import TotalPaidDashboard from '../TotalPaidDashboard';
+import ExpenceGraph from '../ExpencesGraph';
 
 const Home = () => {
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
@@ -55,6 +56,7 @@ const Home = () => {
           }}
         >
           <TabWapper onNewTransactionTab={handleTransactionAdded} />
+          <ExpenceGraph expenceGraphTransactions={transactions} />
         </Box>
         <DisplayTransactions transactions={transactions} />
       </Container>
