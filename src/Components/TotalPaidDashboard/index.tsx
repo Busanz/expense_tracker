@@ -33,8 +33,6 @@ const TotalPaidDashboard = ({
     100,
   );
 
-  console.log(typeof percent);
-
   return (
     <Card
       elevation={0}

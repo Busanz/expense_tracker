@@ -44,7 +44,6 @@ const ExpenceGraph = ({ expenceGraphTransactions }: ExpenceGraphProps) => {
     label: category,
     value: getTotalSpentByCategory(category),
   }));
-  console.log(expencesPerCategory);
   return (
     <Box
       sx={{
